@@ -1,0 +1,5 @@
+commit eb65238f1c2766b77a801b9f85841821f6f4216c (HEAD -> master)
+Author: Darya Shatrova <darya.shatrov@gmail.com>
+Date:   Sun Feb 11 18:31:55 2018 +0300
+
+    add .gitignore
