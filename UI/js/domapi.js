@@ -1,7 +1,7 @@
 let postToEdit = {
     description: 'very beautifull!!!!!!!',
     photoLink: 'Images/autumn.jpg',
-    hashtags: ['#beautiful', '#trees', '#autumn','#happy'],
+    hashtags: ['#beautiful', '#trees', '#autumn', '#happy'],
 };
 var options = {
     month: 'numeric',
@@ -16,91 +16,91 @@ window.domFunc = (function () {
     let userName = document.querySelector('.userName');
 
     return {
-    changeUser: function (currentUser) {
-    if (currentUser !== null) {
-        user = currentUser;
-        let nameFull = document.getElementsByClassName('userName')[0];
-        nameFull.style.display='flex';
-        nameFull.innerHTML = user;
+        changeUser: function (currentUser) {
+            if (currentUser !== null) {
+                user = currentUser;
+                let nameFull = document.getElementsByClassName('userName')[0];
+                nameFull.style.display = 'flex';
+                nameFull.innerHTML = user;
 
-    } else if(currentUser===null){
-        user = currentUser;
-        document.getElementsByClassName('sign')[0].style.display='flex';
-        document.getElementsByClassName('addPost')[0].style.display='none';
-        document.getElementsByClassName('userIcon')[0].style.display='none';
-        document.getElementsByClassName('userName')[0].style.display='none';    
-        user = null;   
-    }  
-},
+            } else if (currentUser === null) {
+                user = currentUser;
+                document.getElementsByClassName('sign')[0].style.display = 'flex';
+                document.getElementsByClassName('addPost')[0].style.display = 'none';
+                document.getElementsByClassName('userIcon')[0].style.display = 'none';
+                document.getElementsByClassName('userName')[0].style.display = 'none';
+                user = null;
+            }
+        },
 
-createPost: function (post) {
+        createPost: function (post) {
 
-        var classes = document.getElementsByClassName("postHolder");
-        let newPost = document.createElement('div');
-        let myclass = classes[0];
-        var tags;       
-        newPost.id = post.id;   
+            var classes = document.getElementsByClassName("postHolder");
+            let newPost = document.createElement('div');
+            let myclass = classes[0];
+            var tags;
+            newPost.id = post.id;
 
-        newPost.innerHTML = 
-        '<div class="postHolder"><img class="photo" src="' + post.photoLink + '" alt="photo">' +
-        
-        '<div class="authorName">' + '<a><img class="like" src="Icons/Like.png" title="LIKE"/></a>' + 
-        post.author +'| <div class="date">' +
-        post.createdAt.toLocaleString("en", options) + '</div>' +   
-        '</div>' +               
-        '<div class="description">' + post.description + '</div>' +
-        '<div class="tags"><div class="tag">' + post.hashtags + '</div></div></div>';
+            newPost.innerHTML =
+                '<div class="postHolder"><img class="photo" src="' + post.photoLink + '" alt="photo">' +
 
-        if (user === post.author) 
-        newPost.innerHTML = 
-        '<div class="postHolder"><img class="photo" src="' + post.photoLink + '" alt="photo">' +        
-        '<div class="authorName">' + '<a><img class="like" src="Icons/Like.png" title="LIKE"/></a>' +        
-        post.author +'| <div class="date">' +
-        post.createdAt.toLocaleString("en", options) + '</div>' +   
-        '<a><img class="delete" src="Icons/Delete.png" title="Delete post"/></a>' + 
-        '<a><img class="edit" src="Icons/Edit.png" title="Edit post"/></a>' + 
-        '</div>' +               
-        '<div class="description">' + post.description + '</div>' + 
-        '<div class="tags"><div class="tag">' + post.hashtags + '</div></div></div>';
+                '<div class="authorName">' + '<a><img class="like" src="Icons/Like.png" title="LIKE"/></a>' +
+                post.author + '| <div class="date">' +
+                post.createdAt.toLocaleString("en", options) + '</div>' +
+                '</div>' +
+                '<div class="description">' + post.description + '</div>' +
+                '<div class="tags"><div class="tag">' + post.hashtags + '</div></div></div>';
 
-        return newPost;
-    },    
+            if (user === post.author)
+                newPost.innerHTML =
+                    '<div class="postHolder"><img class="photo" src="' + post.photoLink + '" alt="photo">' +
+                    '<div class="authorName">' + '<a><img class="like" src="Icons/Like.png" title="LIKE"/></a>' +
+                    post.author + '| <div class="date">' +
+                    post.createdAt.toLocaleString("en", options) + '</div>' +
+                    '<a><img class="delete" src="Icons/Delete.png" title="Delete post"/></a>' +
+                    '<a><img class="edit" src="Icons/Edit.png" title="Edit post"/></a>' +
+                    '</div>' +
+                    '<div class="description">' + post.description + '</div>' +
+                    '<div class="tags"><div class="tag">' + post.hashtags + '</div></div></div>';
 
-getPosts: function (skip = 0, top = 6, filterConfig) {
-    let posts = functionsBlock.getPhotoPosts(skip, top, filterConfig);
-    posts.forEach((elem) => {
-        photoPosts.appendChild(this.createPost(elem));        
-    });
-    
-},
-addPost: function (post) {
-    if (functionsBlock.addPhotoPost(post)) {
-        photoPosts.innerHTML = '';
-        this.getPosts();
-        return true;
+            return newPost;
+        },
+
+        getPosts: function (skip = 0, top = 6, filterConfig) {
+            let posts = functionsBlock.getPhotoPosts(skip, top, filterConfig);
+            posts.forEach((elem) => {
+                photoPosts.appendChild(this.createPost(elem));
+            });
+
+        },
+        addPost: function (post) {
+            if (functionsBlock.addPhotoPost(post)) {
+                photoPosts.innerHTML = '';
+                this.getPosts();
+                return true;
+            }
+            return false;
+        },
+        removePost: function (id) {
+            if (functionsBlock.removePhotoPost(id)) {
+                photoPosts.removeChild(document.getElementById(id));
+                let count = document.getElementsByClassName('photo').length;
+                this.getPosts(count, 1);
+                return true;
+            }
+            return false;
+        },
+        editPost: function (id, post) {
+            if (functionsBlock.editPhotoPost(id, post)) {
+                photoPosts.replaceChild(this.createPost(functionsBlock.getPhotoPost(id)), document.getElementById(id));
+                return true;
+            }
+            return false;
+        }
     }
-    return false;
-},
-removePost: function (id) {
-    if (functionsBlock.removePhotoPost(id)) {
-        photoPosts.removeChild(document.getElementById(id));
-        let count = document.getElementsByClassName('photo').length;
-        this.getPosts(count, 1);
-        return true;
-    }
-    return false;
-},
-editPost: function (id, post) {
-    if (functionsBlock.editPhotoPost(id, post)) {
-        photoPosts.replaceChild(this.createPost(functionsBlock.getPhotoPost(id)), document.getElementById(id));
-        return true;
-    }
-    return false;
-    }
-}
 })();
 
-function showAllPosts(skip = 0, top = 10, filterConfig){
+function showAllPosts(skip = 0, top = 10, filterConfig) {
     let content = document.getElementsByClassName('postsBand')[0];
     content.innerHTML = '';
     domFunc.getPosts(skip, top, filterConfig);
