@@ -1,0 +1,112 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: center; 
+    justify-content: center;
+
+    font-family: monospace;
+    font-style: lucida;
+    margin: 0;    
+}
+
+header{
+    display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	align-items: center;
+
+    top: 0;
+	width: 90%;
+	height: 55px;
+	position: fixed; 
+	text-align: center;
+    background: -webkit-linear-gradient(top, rgba(167, 223, 253, 0.55), rgb(255, 255, 255));
+    padding-left:5%;
+    padding-right: 3%;
+    border: 0.1px solid silver;
+}
+header:before, header:after{
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-color: transparent;
+    bottom: -10px;
+}
+header:before{
+    border-width: 0 10px 10px 0;
+    border-right-color: rgb(119, 118, 118);
+    left: 0;
+}
+header:after{
+    border-width: 0 0 10px 10px;
+    border-left-color: rgb(119, 118, 118);
+    right: 0;
+}
+.logo{
+    font-size: 2.4rem;   
+} 
+.logoImg{
+    height:3rem;
+    width: 3rem;
+}
+.buttons{
+    font-size: 1.5rem;
+}
+.logoName, .userName{
+    vertical-align: 7px;
+}
+.addPost, .sign, .userIcon{
+    padding-left: 24px;
+    height: 30px;
+    width: 30px;
+}
+.addPost:hover, .sign:hover, .userIcon:hover{
+    filter: invert(0.5);
+}
+
+.errorImg{
+    z-index: -1;
+    margin-top: 4rem;
+    width: 45rem;
+    
+}
+.errorText{
+    font-size: 1.5rem;
+}
+a{
+    color: black;
+}
+a:visited {
+color: #5F5F5F;
+}
+A:active {
+color: gray; 
+}
+footer{   
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 96%;
+    font-size: 0.8rem; 
+    left: 0; 
+    bottom: 0; 
+    padding-left: 3%;
+    padding-right: 3%;
+    line-height: 0.3;
+    background: -webkit-linear-gradient(top,  rgb(255, 255, 255), rgba(167, 223, 253, 0.55));
+    border: 0.1px solid silver;
+    position: relative;
+    margin-top: 55%;
+}
+  
+@media (max-width: 700px){
+    header{width: 90%; font-size: 0;flex-direction:row; justify-content: flex-end; align-items: center;}
+
+    .errorImg{width: 90%; padding-left: 20px;}
+    
+    .logo{width: 3rem; height: 3rem;  font-size: 0; }
+    footer{display: flex; flex-direction: column; font-size: 0.8rem; width: 90%;}
+}
+
+
