@@ -33,6 +33,24 @@ window.domFunc = (function () {
             }
         },
 
+        showHeader: function(header){
+            var classes = document.getElementsByClassName("header");
+            let head = document.createElement('div');
+
+           head.innerHTML =
+            '<div class="logo">' + header.logoImg +
+            '<a class="logo"><img class="logoImg" src="Icons/HomeIcon.png" title="MainPage"></a>' + 
+            '<a class="logoName">Inspiregram</a>' +       
+            '</div>' + 
+            '<div class="buttons">' + 
+            '<a class="buttons"><img class="addPost" src="Icons/AddPost.png" title="Add new post"/><a>' + 
+            '<a class="buttons"><img class="sign" src="Icons/LogOutIcon.png" title="Sign"/></a>' +       
+            '<a class="buttons"><img class="userIcon" src="Icons/UserIcon.png" title="UserPage"/></a>' +  
+            '<a class="userName">DaryaS</a>' +  
+            '</div>'  
+
+        },
+
         createPost: function (post) {
 
             var classes = document.getElementsByClassName("postHolder");
