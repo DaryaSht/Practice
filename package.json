@@ -15,8 +15,10 @@
     "url": "https://github.com/DaryaSht/Practice/issues"
   },
   "homepage": "https://github.com/DaryaSht/Practice#readme",
-  "description": "",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.3"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }
